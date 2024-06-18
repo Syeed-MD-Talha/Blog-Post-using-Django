@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href='{% static "css/home.css" %}'> 
+<link rel="stylesheet" href='{% static "css/create.css" %}'> 
+{% endblock style %}
+
+
+{% block content %}
+   
+<form action="" method="post" enctype="multipart/form-data">
+  {% csrf_token %}
+  {% for frm in form %}
+  {{frm.label}} {{frm}} <br>
+  {% endfor %}
+
+<input type="submit" value="save" style="background-color: rgb(255, 149, 0);">
+
+</form>
+
+{% endblock content %}

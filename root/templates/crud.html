@@ -11,6 +11,16 @@
 <div class="container">
 
 
+    {% if not info %}
+      <div class="blog-post">
+         <h1>There is no post yet</h1>
+         <p class="create_new_post"><a href="{% url 'create_post'%}">Create Post</a></p>
+      </div>
+    {% endif %}
+
+
+
+
     {% for data in info %}
     <div class="blog-post" id="post{{ forloop.counter }}">
         <div class="part1">
@@ -25,14 +35,14 @@
             <p class="post-description">{{ data.content }}</p>
             <div class="buttons">
             <a href="{% url 'create_post' %}"><button class="add-btn">Create</button></a> 
-            <a href=""><button class="edit-btn">Edit</button></a>
-            <a href=""><button class="delete-btn">Delete</button></a>
+            <a href="{% url 'edit_post' data.id %}"><button class="edit-btn">Edit</button></a>
+            <a href="{% url 'delete_post' data.id %}"><button class="delete-btn">Delete</button></a>
             </div>
         </div>
     </div> 
     {% endfor %}
 
-    
+
 </div>
 
 {% endblock content %}
