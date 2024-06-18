@@ -1,0 +1,74 @@
+/* Reset some default styles */
+body, h1, h2, h3, p, ul {
+    margin: 0;
+    padding: 0;
+}
+
+/* Basic styles */
+body {
+    font-family: Arial, sans-serif;
+    line-height: 1.6;
+    min-height: 100vh; /* Set a minimum height for the body */
+    display: flex; /* Use flexbox for vertical centering */
+    flex-direction: column; /* Stack elements vertically */
+}
+
+.container {
+    /* Allow the container to grow and take up remaining space */
+}
+
+header {
+    background-color: #333;
+    color: #fff;
+    padding: 1rem;
+}
+
+nav ul {
+    list-style-type: none;
+    display: flex;
+}
+
+nav ul li {
+    margin-right: 1rem;
+}
+
+nav ul li a {
+    display: inline-block;
+    color: #fff;
+    text-decoration: none;
+    transition: transform 0.3s;
+}
+nav ul li a:hover{color:tomato;transform: scale(1.3);}
+
+main {
+    padding: 2rem;
+}
+
+.hero {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.features {
+    display: flex;
+    justify-content: space-between;
+}
+
+.feature {
+    text-align: center;
+    width: 30%;
+}
+
+.feature img {
+    max-width: 100%;
+    height: auto;
+}
+
+footer {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 1rem;
+    margin-top: auto; /* Push the footer to the bottom */
+}
+

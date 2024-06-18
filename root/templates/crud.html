@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block style %}
+<title>Blog Page</title>
+<link rel="stylesheet" href='{% static "css/home.css" %}'> 
+{% endblock style %}
+
+{% block content %}
+<link rel="stylesheet" href='{% static "css/crud.css" %}'> 
+
+<div class="container">
+
+
+    {% for data in info %}
+    <div class="blog-post" id="post{{ forloop.counter }}">
+        <div class="part1">
+            {% if data.img %}
+            <img src="{{ data.img.url }}" alt="Post Image">
+            {% else %}
+                <img src="{% static 'images/image1.jpg' %}" alt="Default Image">
+            {% endif %}
+        </div>
+        <div class="part2">
+            <h2 class="post-title">{{ data.title }}</h2>
+            <p class="post-description">{{ data.content }}</p>
+            <div class="buttons">
+            <a href="{% url 'create_post' %}"><button class="add-btn">Create</button></a> 
+            <a href=""><button class="edit-btn">Edit</button></a>
+            <a href=""><button class="delete-btn">Delete</button></a>
+            </div>
+        </div>
+    </div> 
+    {% endfor %}
+
+    
+</div>
+
+{% endblock content %}

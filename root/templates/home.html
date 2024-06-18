@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<main>
+    <section class="hero">
+        <h1 style="font-size: 40px;">Welcome to our Dummy Homepage</h1>
+        <p>This is a simple example of a homepage built with HTML and CSS.</p>
+    </section>
+
+    <section class="features">
+        <div class="feature"> 
+            <img src="{{MEDIA_URL}}images/image1.jpg" alt="Feature 1">
+            <h3>Interior Design</h3>
+            <p>This is a Interior design with white color. Here we try to add black color as combination.It's look like nice. Isn't it?</p>
+        </div>
+        <div class="feature">
+            <img src='{% static "images/image2.jpg" %}' alt="Feature 1">
+            <h3>Woden house</h3>
+            <p>these houses are made by only wood. So beautiful house i have ever see before. As it is beautiful it's cost also over 1 million dollar.</p>
+            
+            
+        </div>
+        <div class="feature">
+            <img src='{% static "images/image3.jpg" %}' alt="Feature 1">
+            <h3>Dining room Design</h3>
+            <p>This design is made by Shara.Everything looks pretty good. Everyone just this design.</p>
+        </div>
+    </section>
+</main>
+{% endblock content %}

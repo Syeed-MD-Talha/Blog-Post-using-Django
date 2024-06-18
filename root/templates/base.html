@@ -1,0 +1,41 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% block style %}
+    <title>Dummy Homepage</title>
+    <link rel="stylesheet" href='{% static "css/home.css" %}'>
+    {% endblock style %}
+    
+     
+</head>
+<body>
+    <header>
+        <nav>
+            {% if request.user.is_authenticated %}
+            <p style="color:cyan;font-size:large;">Hi {{request.user.username}}!!! </p> <br>
+            {% endif %}
+            <ul>
+                <li><a href="{% url 'home_page' %}">Home</a></li>
+
+                <li><a href="{% url 'blog_post' %}">Posts</a></li>
+
+                {% if request.user.is_authenticated %}
+                 <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                 {% else %}
+                 <li><a href="{% url 'login_page' %}">Login</a> / <a href="{% url 'signup_page' %}">SignUp</a></li>
+                 {% endif %}
+            </ul>
+        </nav>
+    </header>
+  
+    {% block content %}
+      
+    {% endblock content %}
+   
+
+    <footer>
+        <p>&copy; 2023 Dummy Homepage. All rights reserved.</p>
+    </footer>
+</body>
+</html>
