@@ -8,16 +8,14 @@
 {% block content %}
 <link rel="stylesheet" href='{% static "css/crud.css" %}'> 
 
+{% if request.user.is_authenticated %}
 <div class="container">
-
-
     {% if not info %}
       <div class="blog-post">
          <h1>There is no post yet</h1>
          <p class="create_new_post"><a href="{% url 'create_post'%}">Create Post</a></p>
       </div>
     {% endif %}
-
 
 
 
@@ -29,10 +27,14 @@
             {% else %}
                 <img src="{% static 'images/image1.jpg' %}" alt="Default Image">
             {% endif %}
+        
+            <div class="part1-2">
+                <h2 class="post-title">{{ data.title }}</h2>
+                <p class="post-description">{{ data.content }}</p>
+            </div>
         </div>
         <div class="part2">
-            <h2 class="post-title">{{ data.title }}</h2>
-            <p class="post-description">{{ data.content }}</p>
+
             <div class="buttons">
             <a href="{% url 'create_post' %}"><button class="add-btn">Create</button></a> 
             <a href="{% url 'edit_post' data.id %}"><button class="edit-btn">Edit</button></a>
@@ -42,7 +44,21 @@
     </div> 
     {% endfor %}
 
-
 </div>
 
+{% else %}
+<div class="login-prompt">
+    <h1>You should LogIn/SignUp first</h1>
+    <p>
+        <a href="{% url 'login_page' %}">Login</a> or <a href="{% url 'signup_page' %}">SignUp</a>
+    </p>
+</div>
+
+
+{% endif %}
 {% endblock content %}
+
+
+
+
+
