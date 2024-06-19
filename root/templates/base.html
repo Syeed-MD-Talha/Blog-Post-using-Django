@@ -12,8 +12,13 @@
 <body>
     <header>
         <nav>
+            <div class="navBar">
             {% if request.user.is_authenticated %}
-            <p style="color:cyan;font-size:large;">Hi {{request.user.username}}!!! </p> <br>
+            <div class="profile_image">
+                <img src='{% static "images/profile.jpg" %}' alt=""> 
+                <p style="color:cyan;font-size:large;">Hi {{request.user.username}}!!! </p> <br>
+            </div>
+            
             {% endif %}
             <ul>
                 <li><a href="{% url 'home_page' %}">Home</a></li>
@@ -22,10 +27,12 @@
 
                 {% if request.user.is_authenticated %}
                  <li><a href="{% url 'logout_page' %}">Logout</a></li>
+                 <li><a href="{% url 'update_profile' %}">Settings</a></li>
                  {% else %}
                  <li><a href="{% url 'login_page' %}">Login</a> / <a href="{% url 'signup_page' %}">SignUp</a></li>
                  {% endif %}
             </ul>
+        </div>
         </nav>
     </header>
   

@@ -1,0 +1,39 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block style %}
+<link rel="stylesheet" href='{% static "css/home.css" %}'> 
+<link rel="stylesheet" href='{% static "css/profile_update.css" %}'> 
+<style>
+  .errorlist {
+      color: red;
+  }
+</style>
+{% endblock style %}
+
+
+{% block content %}
+   
+<div class="container">
+  <h1>User Settings</h1>
+  <form action="" method="post" enctype="multipart/form-data" novalidate>
+      {% csrf_token %}
+
+
+      
+      <!-- {{password_form.as_p}} -->
+      <div class="setting">{{username_form}}</div>
+      <div class="setting">{{email_form}}</div>
+      <div class="setting">{{password_form.as_p}}</div>
+      
+      
+      <!-- <div class="setting">
+          <label for="profile-photo">Profile Picture:</label>
+          <img id="profile-preview" src="default_profile_picture.jpg" alt="Profile Preview" class="profile-avatar">
+          <input type="file" id="profile-photo" name="profile_photo" accept="image/*" onchange="previewProfileImage(event)">
+      </div> -->
+      <button type="submit">Save Changes</button>
+  </form>
+</div>
+
+{% endblock content %}
