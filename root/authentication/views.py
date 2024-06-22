@@ -1,5 +1,5 @@
 from django.shortcuts import render,redirect
-from .forms import RegisterForm,LoginForm,EmailUpdateForm,PasswordUpdateForm,UsernameUpdate
+from .forms import RegisterForm,LoginForm,PasswordUpdateForm,CustomUserChangeForm
 from django.contrib.auth import login,logout,authenticate
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
@@ -61,26 +61,26 @@ def log_out(request):
 @login_required
 def update_profile(request):
     if request.method == 'POST':
-        username_form = UsernameUpdate(request.POST, instance=request.user)
-        email_form = EmailUpdateForm(request.POST, instance=request.user)
-        password_form = PasswordUpdateForm(request.user, request.POST)
+        if 'update_profile' in request.POST:
+              form=CustomUserChangeForm(request.POST,instance=request.user)
+              if form.is_valid():
+                  form.save()
+                  return redirect('home_page')
+              else:
+                messages.error(request, 'Please correct the errors below.')
 
-        if email_form.is_valid() and password_form.is_valid() and username_form.is_valid():
-            username_form.save()
-            email_form.save()
-            password_form.save()
-            messages.success(request, 'Your profile was successfully updated!')
-            return redirect('home_page')
-        else:
-            messages.error(request, 'Please correct the errors below.')
+        if 'change_password' in request.POST:
+              password_form = PasswordUpdateForm(request.user, request.POST)
+              if password_form.is_valid():
+                    password_form.save()
+                    return redirect('home_page')
+              else:
+                messages.error(request, 'Please correct the errors below.')
+        
     else:
-        username_form = UsernameUpdate(instance=request.user)
-        email_form = EmailUpdateForm(instance=request.user)
+        form=CustomUserChangeForm(instance=request.user)
         password_form = PasswordUpdateForm(request.user)
 
-    context = {
-        'username_form': username_form,
-        'email_form': email_form,
-        'password_form': password_form,
-    }
+    context = {'form':form,'password_form': password_form}
     return render(request, 'profile_update.html', context)
+

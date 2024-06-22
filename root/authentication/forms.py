@@ -1,12 +1,11 @@
 from django import forms  
 from django.contrib.auth.models import User
-from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm
+from django.contrib.auth.forms import UserCreationForm,PasswordChangeForm,UserChangeForm
 
 class RegisterForm(UserCreationForm):
     class Meta:
         model=User
         fields=['username','email','password1','password2']
-
 
 
 class LoginForm(forms.Form):
@@ -15,18 +14,12 @@ class LoginForm(forms.Form):
 
 
 
-class UsernameUpdate(forms.ModelForm):
-    username=forms.CharField()
-    class Meta:
-        model=User
-        fields=['username']
-
-
-class EmailUpdateForm(forms.ModelForm):
-    email=forms.EmailField()
-    class Meta:
-        model=User
-        fields=['email']
-
 class PasswordUpdateForm(PasswordChangeForm):
     pass
+
+
+
+class CustomUserChangeForm(UserChangeForm):
+    class Meta:
+        model=User 
+        fields=['username','first_name','last_name','email']
